@@ -263,14 +263,10 @@ function endsWith(str, substr) {
  *   formatTime(0, 0) => "00:00"
  */
 function formatTime(minutes, seconds) {
-  let min = minutes;
-  let sec = seconds;
-  if (min < 10) {
-    min = `0${min}`;
-  }
-  if (sec < 10) {
-    sec = `0${sec}`;
-  }
+  let min = minutes.toString();
+  let sec = seconds.toString();
+  min = min.padStart(2, 0);
+  sec = sec.padStart(2, 0);
   return `${min}:${sec}`;
 }
 
@@ -566,8 +562,69 @@ function encodeToRot13(/* str */) {
  *   'Q♠' => 50
  *   'K♠' => 51
  */
-function getCardId(/* value */) {
-  throw new Error('Not implemented');
+function getCardId(value) {
+  const cards = [
+    'A♣',
+    '2♣',
+    '3♣',
+    '4♣',
+    '5♣',
+    '6♣',
+    '7♣',
+    '8♣',
+    '9♣',
+    '10♣',
+    'J♣',
+    'Q♣',
+    'K♣',
+    'A♦',
+    '2♦',
+    '3♦',
+    '4♦',
+    '5♦',
+    '6♦',
+    '7♦',
+    '8♦',
+    '9♦',
+    '10♦',
+    'J♦',
+    'Q♦',
+    'K♦',
+    'A♥',
+    '2♥',
+    '3♥',
+    '4♥',
+    '5♥',
+    '6♥',
+    '7♥',
+    '8♥',
+    '9♥',
+    '10♥',
+    'J♥',
+    'Q♥',
+    'K♥',
+    'A♠',
+    '2♠',
+    '3♠',
+    '4♠',
+    '5♠',
+    '6♠',
+    '7♠',
+    '8♠',
+    '9♠',
+    '10♠',
+    'J♠',
+    'Q♠',
+    'K♠',
+  ];
+  let index = 0;
+  for (let i = 0; i < cards.length; i += 1) {
+    const element = cards[i];
+    if (value === element) {
+      index = cards.indexOf(element);
+    }
+  }
+  return index;
 }
 
 module.exports = {
